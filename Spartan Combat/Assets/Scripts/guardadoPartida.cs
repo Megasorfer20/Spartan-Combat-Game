@@ -3,33 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-[System.Serializable]
-public class PlayerData
-{
-    public bool level1;
-    public bool level2;
-    public bool level3;
-    public int monedas;
-    public PalyerStats palyerStats;
 
-}
-
-[System.Serializable]
-public class PalyerStats
-{
-    public int ataque;
-    public int defensa;
-    public int curacion;
-
-}
 
 public class guardadoPartida : MonoBehaviour
 {
-    public PlayerData playerData;
+    public ScriptCharacters scriptCharacters;
 
     public void guardarPartida()
     {
-        string json = JsonUtility.ToJson(playerData);
+        string json = JsonUtility.ToJson(scriptCharacters);
         File.WriteAllText(Application.persistentDataPath + "/guardado.json", json);
     }
 
@@ -40,13 +22,13 @@ public class guardadoPartida : MonoBehaviour
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
-            playerData = JsonUtility.FromJson<PlayerData>(json);
+            scriptCharacters = JsonUtility.FromJson<ScriptCharacters>(json);
         }
     }
 
     public void nuevoJuego()
     {
-        playerData = new PlayerData();
+        scriptCharacters = new ScriptCharacters();
         guardarPartida();
     }
 }
