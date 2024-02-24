@@ -11,7 +11,7 @@ public class EnemyStats
 
 }
 
-[CreateAssetMenu(fileName = "enemyCharacter", menuName = "ScriptableObjects/ScriptEnemys", order =2)]
+[CreateAssetMenu(fileName = "enemyCharacter", menuName = "ScriptableObjects/ScriptEnemys", order = 2)]
 public class ScriptsEnemys : ScriptableObject
 {
     public EnemyStats enemyStats;
@@ -19,7 +19,7 @@ public class ScriptsEnemys : ScriptableObject
     private string lastChose = "";
     private string pastLastChose = "";
 
-    public int enemysTurnIA(int valorAtaque, int valorDefensa, int valorVida, int ataqueEnemigo, int vidaEenemigo)
+    public int enemysTurnIA(int valorVida, int vidaEenemigo)
     {
         if (lastChose == "" && pastLastChose == "")
         {

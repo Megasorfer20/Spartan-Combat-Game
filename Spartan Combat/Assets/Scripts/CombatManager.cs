@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CombatState
+public enum CombatMovment
 {
-    PlayerTurn,
-    EnemyTurn
+    none,
+    atacar,
+    defender,
+    curar
 }
-
 
 public struct Stats
 {
@@ -26,8 +27,10 @@ public class CombatManager : MonoBehaviour
     private Stats playerStats;
     private Stats enemyStats;
 
-    private int accionJugador;
-    private int accionEnemigo;
+    private int respuestaIA;
+
+    private CombatMovment accionEnemigo;
+    private CombatMovment accionPlayer;
 
     void ActualizarPlayerData()
     {
@@ -55,33 +58,108 @@ public class CombatManager : MonoBehaviour
 
         currentState = CombatState.PlayerTurn;
 
-        Debug.Log("Debud De los stats del enemigo");
-        Debug.Log(enemyStats.ataque);
-        Debug.Log(enemyStats.defensa);
-        Debug.Log(enemyStats.vida);
+        accionEnemigo = CombatMovment.none;
+        accionPlayer = CombatMovment.none;
 
-        Debug.Log("Debud De los stats del Jugador");
-        Debug.Log(playerStats.ataque);
-        Debug.Log(playerStats.defensa);
-        Debug.Log(playerStats.vida);
     }
 
     void Update()
     {
         cambioDeTurno();
-    }
 
-    public void cambioDeTurno()
-    {
-        switch (currentState)
+        if (respuestaIA == 1)
         {
-            case CombatState.PlayerTurn:
-
-                break;
-            case CombatState.EnemyTurn:
-                accionEnemigo = charEnemy.enemysTurnIA();
-                break;
+            accionEnemigo = CombatMovment.atacar;
+        }
+        else if (respuestaIA == 2)
+        {
+            accionEnemigo = CombatMovment.defender;
+        }
+        else if (respuestaIA == 3)
+        {
+            accionEnemigo = CombatMovment.curar;
+        }
+        else
+        {
+            accionEnemigo = CombatMovment.none;
         }
     }
 
+
+
+    public void seleccionAtaque()
+    {
+        accionPlayer = CombatMovment.atacar;
+        respuestaIA = charEnemy.enemysTurnIA(enemyStats.vida, playerStats.vida);
+        logicaCombateHumano();
+        accionPlayer = CombatMovment.none;
+
+    }
+
+    public void seleccionDefensa()
+    {
+        accionPlayer = CombatMovment.defender;
+        respuestaIA = charEnemy.enemysTurnIA(enemyStats.vida, playerStats.vida);
+        logicaCombateHumano();
+        accionPlayer = CombatMovment.none;
+
+    }
+
+    public void seleccionCuracion()
+    {
+        accionPlayer = CombatMovment.curar;
+        respuestaIA = charEnemy.enemysTurnIA(enemyStats.vida, playerStats.vida);
+        logicaCombateHumano();
+        accionPlayer = CombatMovment.none;
+
+    }
+
+
+
+private int calcularDefensa(){
+
+}
+
+private int calcularAtaque(int defensaPer, int ataqueCon){
+
+}
+
+private int calcularCuracion(int vidaPer){
+
+}
+
+    private void logicaCombateHumano(){
+
+        private int valorOperacion = 0;
+
+        if(accionPlayer == CombatMovment.defender || accionEnemigo == CombatMovment.defender){
+            if (accionPlayer == CombatMovment.defender && accionEnemigo == CombatMovment.defender && accionPlayer == CombatMovment.atacar)
+            {
+                
+            }
+
+            if (accionPlayer == CombatMovment.defender && accionEnemigo !== CombatMovment.defender && accionEnemigo == accionEnemigo !== CombatMovment.defender)
+            {
+                
+            }
+        } else {
+            if (true)
+            {
+                
+            }
+
+            if (true)
+            {
+                
+            }
+
+
+        }
+
+
+    }
+
+private void logicaCombateEnemy(int valorAtaquePlayer){
+
+}
 }

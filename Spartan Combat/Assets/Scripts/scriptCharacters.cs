@@ -32,9 +32,49 @@ public class PalyerStats
 [System.Serializable]
 public class PalyerUpgrades
 {
-    public int epada;
-    public int escudo;
-    public int casco;
+
+    public delegate void OnUpgradeChange();
+    public static event OnUpgradeChange onEspadaChange;
+    public static event OnUpgradeChange onEscudoChange;
+    public static event OnUpgradeChange onCascoChange;
+
+    public int _espada;
+    public int espada
+    {
+        get { return _espada; }
+        set
+        {
+            _espada = value;
+            if (onEspadaChange != null)
+            {
+                onEspadaChange.Invoke();
+            }
+        }
+    }
+    public int _escudo;
+    public int escudo{
+        get { return _escudo; }
+        set
+        {
+            _escudo = value;
+            if (onEscudoChange != null)
+            {
+                onEscudoChange.Invoke();
+            }
+        }
+    }
+    public int _casco;
+    public int casco{
+        get { return _casco; }
+        set
+        {
+            _casco = value;
+            if (onCascoChange != null)
+            {
+                onCascoChange.Invoke();
+            }
+        }
+    }
 
 }
 
@@ -52,7 +92,7 @@ public class TotalUpgrades
         this.palyerStats = palyerStats;
         this.palyerUpgrades = palyerUpgrades;
 
-        totalAtque = palyerStats.ataque + (5 * palyerUpgrades.epada);
+        totalAtque = palyerStats.ataque + (5 * palyerUpgrades.espada);
         totalDefensa = palyerStats.defensa + (5 * palyerUpgrades.escudo);
         totalVida = palyerStats.vida + (5 * palyerUpgrades.casco);
     }

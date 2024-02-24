@@ -18,10 +18,10 @@ MonoBehaviour:
     level3: 0
     monedas: 0
     palyerStats:
-      ataque: 25
-      defensa: 15
-      vida: 10
+      ataque: 15
+      defensa: 5
+      vida: 25
     palyerUpgrades:
-      epada: 1
-      escudo: 3
-      casco: 2
+      _espada: 0
+      _escudo: 0
+      _casco: 0
