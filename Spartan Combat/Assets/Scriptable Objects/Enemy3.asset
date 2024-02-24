@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStats:
     ataque: 40
-    defensa: 35
+    defensa: 25
     vida: 60
