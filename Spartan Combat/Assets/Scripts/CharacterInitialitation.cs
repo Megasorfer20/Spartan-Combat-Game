@@ -9,9 +9,6 @@ public class CharacterInitialitation : MonoBehaviour
     void Awake()
     {
         ActualizarPlayerData();
-        Debug.Log(scriptCharacters.playerData.totalUpgrades.totalAtque);
-        Debug.Log(scriptCharacters.playerData.totalUpgrades.totalDefensa);
-        Debug.Log(scriptCharacters.playerData.totalUpgrades.totalVida);
     }
 
     void ActualizarPlayerData()

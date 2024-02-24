@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Enemy1
   m_EditorClassIdentifier: 
   enemyStats:
-    ataque: 0
-    defensa: 0
-    vida: 0
+    ataque: 15
+    defensa: 15
+    vida: 25

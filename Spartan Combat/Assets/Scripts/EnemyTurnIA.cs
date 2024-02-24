@@ -2,22 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class EnemyStats
+public class EnemyTurnIA : MonoBehaviour
 {
-    public int ataque;
-    public int defensa;
-    public int vida;
-
-}
-
-[CreateAssetMenu(fileName = "enemyCharacter", menuName = "ScriptableObjects/ScriptEnemys", order =2)]
-public class ScriptsEnemys : ScriptableObject
-{
-    public EnemyStats enemyStats;
-
     private string lastChose = "";
     private string pastLastChose = "";
+
+    private int ataqueEnemy(int valorAtaque)
+    {
+        return 1;
+    }
+
+    private int defenseEnemy(int valorDefensa, int ataqueEnemigo)
+    {
+        return 1;
+    }
+
+    private int curacionEnemy(int valorVida)
+    {
+        return 1;
+    }
 
     public int enemysTurnIA(int valorAtaque, int valorDefensa, int valorVida, int ataqueEnemigo, int vidaEenemigo)
     {
@@ -27,19 +30,19 @@ public class ScriptsEnemys : ScriptableObject
             {
                 pastLastChose = lastChose;
                 lastChose = "vida";
-                return 3;
+                return curacionEnemy(valorVida);
             }
             else if (vidaEenemigo > (vidaEenemigo * 50) / 100)
             {
                 pastLastChose = lastChose;
                 lastChose = "defensa";
-                return 2;
+                return defenseEnemy(valorDefensa, ataqueEnemigo);
             }
             else
             {
                 pastLastChose = lastChose;
                 lastChose = "ataque";
-                return 1;
+                return ataqueEnemy(valorAtaque);
             }
         }
         else if (lastChose == "ataque" && pastLastChose == "")
@@ -48,19 +51,19 @@ public class ScriptsEnemys : ScriptableObject
             {
                 pastLastChose = lastChose;
                 lastChose = "vida";
-                return 3;
+                return curacionEnemy(valorVida);
             }
             else if (vidaEenemigo > (vidaEenemigo * 50) / 100)
             {
                 pastLastChose = lastChose;
                 lastChose = "ataque";
-                return 1;
+                return ataqueEnemy(valorAtaque);
             }
             else
             {
                 pastLastChose = lastChose;
                 lastChose = "ataque";
-                return 1;
+                return ataqueEnemy(valorAtaque);
             }
         }
         else if (lastChose == "defensa" && pastLastChose == "")
@@ -69,19 +72,19 @@ public class ScriptsEnemys : ScriptableObject
             {
                 pastLastChose = lastChose;
                 lastChose = "vida";
-                return 3;
+                return curacionEnemy(valorVida);
             }
             else if (vidaEenemigo > (vidaEenemigo * 50) / 100)
             {
                 pastLastChose = lastChose;
                 lastChose = "ataque";
-                return 1;
+                return ataqueEnemy(valorAtaque);
             }
             else
             {
                 pastLastChose = lastChose;
                 lastChose = "ataque";
-                return 1;
+                return ataqueEnemy(valorAtaque);
             }
         }
         else if (lastChose == "vida" && pastLastChose == "")
@@ -90,19 +93,19 @@ public class ScriptsEnemys : ScriptableObject
             {
                 pastLastChose = lastChose;
                 lastChose = "vida";
-                return 3;
+                return curacionEnemy(valorVida);
             }
             else if (vidaEenemigo > (vidaEenemigo * 50) / 100)
             {
                 pastLastChose = lastChose;
                 lastChose = "ataque";
-                return 1;
+                return ataqueEnemy(valorAtaque);
             }
             else
             {
                 pastLastChose = lastChose;
                 lastChose = "defensa";
-                return 2;
+                return defenseEnemy(valorDefensa, ataqueEnemigo);
             }
         }
         else if (lastChose == "ataque" && pastLastChose == "ataque")
@@ -111,19 +114,19 @@ public class ScriptsEnemys : ScriptableObject
             {
                 pastLastChose = lastChose;
                 lastChose = "vida";
-                return 3;
+                return curacionEnemy(valorVida);
             }
             else if (vidaEenemigo > (vidaEenemigo * 50) / 100)
             {
                 pastLastChose = lastChose;
                 lastChose = "defensa";
-                return 2;
+                return defenseEnemy(valorDefensa, ataqueEnemigo);
             }
             else
             {
                 pastLastChose = lastChose;
                 lastChose = "defensa";
-                return 2;
+                return defenseEnemy(valorDefensa, ataqueEnemigo);
             }
         }
         else if (lastChose == "defensa" && pastLastChose == "ataque")
@@ -132,19 +135,19 @@ public class ScriptsEnemys : ScriptableObject
             {
                 pastLastChose = lastChose;
                 lastChose = "vida";
-                return 3;
+                return curacionEnemy(valorVida);
             }
             else if (vidaEenemigo > (vidaEenemigo * 50) / 100)
             {
                 pastLastChose = lastChose;
                 lastChose = "ataque";
-                return 1;
+                return ataqueEnemy(valorAtaque);
             }
             else
             {
                 pastLastChose = lastChose;
                 lastChose = "defensa";
-                return 2;
+                return defenseEnemy(valorDefensa, ataqueEnemigo);
             }
         }
         else if (lastChose == "vida" && pastLastChose == "ataque")
@@ -153,19 +156,19 @@ public class ScriptsEnemys : ScriptableObject
             {
                 pastLastChose = lastChose;
                 lastChose = "vida";
-                return 3;
+                return curacionEnemy(valorVida);
             }
             else if (vidaEenemigo > (vidaEenemigo * 50) / 100)
             {
                 pastLastChose = lastChose;
                 lastChose = "ataque";
-                return 1;
+                return ataqueEnemy(valorAtaque);
             }
             else
             {
                 pastLastChose = lastChose;
                 lastChose = "ataque";
-                return 1;
+                return ataqueEnemy(valorAtaque);
             }
         }
         else if (lastChose == "ataque" && pastLastChose == "defensa")
@@ -174,19 +177,19 @@ public class ScriptsEnemys : ScriptableObject
             {
                 pastLastChose = lastChose;
                 lastChose = "vida";
-                return 3;
+                return curacionEnemy(valorVida);
             }
             else if (vidaEenemigo > (vidaEenemigo * 50) / 100)
             {
                 pastLastChose = lastChose;
                 lastChose = "defensa";
-                return 2;
+                return defenseEnemy(valorDefensa, ataqueEnemigo);
             }
             else
             {
                 pastLastChose = lastChose;
                 lastChose = "ataque";
-                return 1;
+                return ataqueEnemy(valorAtaque);
             }
         }
         else if (lastChose == "defensa" && pastLastChose == "defensa")
@@ -195,19 +198,19 @@ public class ScriptsEnemys : ScriptableObject
             {
                 pastLastChose = lastChose;
                 lastChose = "vida";
-                return 3;
+                return curacionEnemy(valorVida);
             }
             else if (vidaEenemigo > (vidaEenemigo * 50) / 100)
             {
                 pastLastChose = lastChose;
                 lastChose = "ataque";
-                return 1;
+                return ataqueEnemy(valorAtaque);
             }
             else
             {
                 pastLastChose = lastChose;
                 lastChose = "vida";
-                return 3;
+                return curacionEnemy(valorVida);
             }
         }
         else if (lastChose == "vida" && pastLastChose == "defensa")
@@ -216,19 +219,19 @@ public class ScriptsEnemys : ScriptableObject
             {
                 pastLastChose = lastChose;
                 lastChose = "vida";
-                return 3;
+                return curacionEnemy(valorVida);
             }
             else if (vidaEenemigo > (vidaEenemigo * 50) / 100)
             {
                 pastLastChose = lastChose;
                 lastChose = "ataque";
-                return 1;
+                return ataqueEnemy(valorAtaque);
             }
             else
             {
                 pastLastChose = lastChose;
                 lastChose = "vida";
-                return 3;
+                return curacionEnemy(valorVida);
             }
         }
         else if (lastChose == "ataque" && pastLastChose == "vida")
@@ -237,19 +240,19 @@ public class ScriptsEnemys : ScriptableObject
             {
                 pastLastChose = lastChose;
                 lastChose = "vida";
-                return 3;
+                return curacionEnemy(valorVida);
             }
             else if (vidaEenemigo > (vidaEenemigo * 50) / 100)
             {
                 pastLastChose = lastChose;
                 lastChose = "defensa";
-                return 2;
+                return defenseEnemy(valorDefensa, ataqueEnemigo);
             }
             else
             {
                 pastLastChose = lastChose;
                 lastChose = "ataque";
-                return 1;
+                return ataqueEnemy(valorAtaque);
             }
         }
         else if (lastChose == "defensa" && pastLastChose == "vida")
@@ -258,19 +261,19 @@ public class ScriptsEnemys : ScriptableObject
             {
                 pastLastChose = lastChose;
                 lastChose = "vida";
-                return 3;
+                return curacionEnemy(valorVida);
             }
             else if (vidaEenemigo > (vidaEenemigo * 50) / 100)
             {
                 pastLastChose = lastChose;
                 lastChose = "ataque";
-                return 1;
+                return ataqueEnemy(valorAtaque);
             }
             else
             {
                 pastLastChose = lastChose;
                 lastChose = "ataque";
-                return 1;
+                return ataqueEnemy(valorAtaque);
             }
         }
         else if (lastChose == "vida" && pastLastChose == "vida")
@@ -279,26 +282,27 @@ public class ScriptsEnemys : ScriptableObject
             {
                 pastLastChose = lastChose;
                 lastChose = "defensa";
-                return 2;
+                return defenseEnemy(valorDefensa, ataqueEnemigo);
             }
             else if (vidaEenemigo > (vidaEenemigo * 50) / 100)
             {
                 pastLastChose = lastChose;
                 lastChose = "defensa";
-                return 2;
+                return defenseEnemy(valorDefensa, ataqueEnemigo);
             }
             else
             {
                 pastLastChose = lastChose;
                 lastChose = "defensa";
-                return 2;
+                return defenseEnemy(valorDefensa, ataqueEnemigo);
             }
         }
         else
         {
             pastLastChose = lastChose;
             lastChose = "ataque";
-            return 1;
+            return ataqueEnemy(valorAtaque);
         }
     }
+
 }
